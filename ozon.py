@@ -3,6 +3,7 @@
 import argparse
 import json
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 from scipy.io import netcdf
 
@@ -48,10 +49,14 @@ def save_as_json(data):
         json.dump(data, fp)
 
 def save_plot(time, data):
+    matplotlib.rcParams['font.size'] = 16
     plt.figure(figsize=(30,20))
+    plt.xlabel("Time")
+    plt.ylabel("Ozone Concentration")
     plt.plot(time[::12], data[::12], label = 'JAN')
     plt.plot(time[6::12], data[6::12], label = 'JUL')
     plt.plot(time, data, '-', label = 'ALL')
+    plt.legend()
     plt.savefig('ozon.png')
 
 
